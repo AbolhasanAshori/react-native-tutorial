@@ -1,0 +1,86 @@
+{
+	"component-ts": {
+		"prefix": "comp",
+		"scope": "typescriptreact",
+    "body": [
+			"export interface ${1:ComponentName}Props {",
+			"  ${2:children?: React.ReactNode}",
+			"}\n",
+			"export default function ${1:ComponentName}(props: ${1:ComponentName}Props) {",
+			"  const {} = props;\n",
+			"  return (",
+			"    ${0:<></>}",
+			"  );",
+			"}\n",
+		],
+    "description": "React Native component"
+	},
+  "component-with-styles-ts": {
+    "prefix": "comps",
+    "scope": "typescriptreact",
+    "body": [
+      "import { StyleSheet } from 'react-native';\n",
+      "export interface ${1:ComponentName}Props {",
+      "  ${2:children?: React.ReactNode}",
+      "}\n",
+      "export default function ${1:ComponentName}(props: ${1:ComponentName}Props) {",
+      "  const {} = props;\n",
+      "  return (",
+      "    ${0:<></>}",
+      "  );",
+      "}\n",
+      "const styles = StyleSheet.create({",
+      "  ${3:componentName}: {",
+      "    ${4:display: 'flex'},",
+      "  },",
+      "});\n",
+    ],
+    "description": "React Native component with styles",
+    "isFileTemplate": true
+  },
+  "component-js": {
+    "prefix": "comp",
+    "scope": "javascript",
+    "body": [
+      "export default function ${1:ComponentName}(props) {",
+      "  const {} = props;\n",
+      "  return (",
+      "    ${0:<></>}",
+      "  );",
+      "}\n",
+    ],
+    "description": "React Native component"
+  },
+  "component-with-styles-js": {
+    "prefix": "comps",
+    "scope": "javascript",
+    "body": [
+      "import { StyleSheet } from 'react-native';\n",
+      "export default function ${1:ComponentName}(props) {",
+      "  const {} = props;\n",
+      "  return (",
+      "    ${0:<></>}",
+      "  );",
+      "}\n",
+      "const styles = StyleSheet.create({",
+      "  ${2:name}: {",
+      "    ${3:display: 'flex'},",
+      "  },",
+      "});\n",
+    ],
+    "description": "React Native component with styles",
+    "isFileTemplate": true
+  },
+  "styles": {
+    "prefix": "sts",
+    "scope": "javascript,typescriptreact",
+    "body": [
+      "const styles = StyleSheet.create({",
+      "  ${1:name}: {",
+      "    ${2:display: 'flex'},",
+      "  },",
+      "});\n",
+    ],
+    "description": "React Native styles"
+  }
+}

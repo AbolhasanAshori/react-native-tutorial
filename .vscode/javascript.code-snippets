@@ -1,0 +1,38 @@
+{
+  "barrel-export-js": {
+    "prefix": "bxp",
+    "scope": "javascript",
+    "body": "export { default as ${1:ComponentName} } from \"./${1:ComponentName}\";\n\n$0",
+    "description": "Component Barrel Export"
+  },
+  "barrel-export-with-default-js": {
+    "prefix": "bxpd",
+    "scope": "javascript",
+    "body": "export { default, default as ${1:ComponentName} } from \"./${1:ComponentName}\";\n\n$0",
+    "description": "Component Barrel Export with default"
+  },
+  "barrel-export-ts": {
+    "prefix": "bxp",
+    "scope": "typescript",
+    "body": [
+      "export { default as ${1:ComponentName} } from \"./${1:ComponentName}\";",
+      "export type { ${1:ComponentName}Props } from \"./${1:ComponentName}\";\n\n$0"
+    ],
+    "description": "Component Barrel Export"
+  },
+  "barrel-export-with-default-ts": {
+    "prefix": "bxpd",
+    "scope": "typescript",
+    "body": [
+      "export { default, default as ${1:ComponentName} } from \"./${1:ComponentName}\";",
+      "export type { ${1:ComponentName}Props } from \"./${1:ComponentName}\";\n\n$0"
+    ],
+    "description": "Component Barrel Export with default"
+  },
+  "barrel-export": {
+    "prefix": "bx",
+    "scope": "javascript,typescript",
+    "body": "export * from \"./${1:componentName}\";\n$0",
+    "description": "Barrel Export"
+  }
+}
