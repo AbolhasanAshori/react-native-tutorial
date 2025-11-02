@@ -1,10 +1,11 @@
-import { createContext, PropsWithChildren, useContext, useMemo, useState } from "react";
+import { createContext, PropsWithChildren, useCallback, useContext, useMemo, useState } from "react";
 
 export interface SearchContextValue {
   results: string[];
   searchValue: string;
   setSearchValue: (value: string) => void;
   addResult: (value: string) => void;
+  removeResult: (value: string) => void;
 }
 
 export const SearchContext = createContext<SearchContextValue | null>(null);
@@ -26,11 +27,18 @@ export default function SearchProvider(props: SearchProviderProps) {
   const [results, setResults] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
 
-  function addResult(value: string) {
+  const addResult = useCallback((value: string) => {
     setResults((prev) => [...prev, value]);
-  }
+  }, []);
 
-  const contextValue = useMemo(() => ({ results, searchValue, setSearchValue, addResult }), [results, searchValue]);
+  const removeResult = useCallback((value: string) => {
+    setResults((prevResults) => prevResults.filter((result) => result !== value));
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({ results, searchValue, setSearchValue, addResult, removeResult }),
+    [results, searchValue, addResult, removeResult]
+  );
 
   return <SearchContext.Provider value={contextValue}>{children}</SearchContext.Provider>;
 }

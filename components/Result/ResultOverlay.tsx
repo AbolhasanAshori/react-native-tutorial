@@ -4,8 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function ResultOverlay() {
   return (
     <View style={styles.view}>
-      <MaterialIcons name="sentiment-neutral" size={120} color="white" />
-      <Text style={styles.primaryText}>No Data</Text>
+      <MaterialIcons name="search" size={120} color="white" />
       <Text style={styles.secondaryText}>Try Searching Something!</Text>
     </View>
   );

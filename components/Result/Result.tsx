@@ -4,11 +4,11 @@ import ResultList from "./ResultList";
 import { useSearchContext } from "../Search";
 
 export default function Result() {
-  const { results, searchValue } = useSearchContext();
+  const { searchValue } = useSearchContext();
 
-  const noResult = results.length === 0 && searchValue === "";
+  const emptySearch = searchValue === "";
 
-  return <View style={styles.view}>{noResult ? <ResultOverlay /> : <ResultList />}</View>;
+  return <View style={styles.view}>{emptySearch ? <ResultOverlay /> : <ResultList />}</View>;
 }
 
 const styles = StyleSheet.create({
