@@ -1,13 +1,19 @@
-import { Pressable, PressableProps, StyleSheet } from "react-native";
+import { ReactNode } from "react";
+import { ListRenderItemInfo, Pressable, PressableProps, StyleSheet } from "react-native";
+import { useListItemContext } from "./ListItemProvider";
 
-export interface ListItemProps extends PressableProps {}
+export interface ListItemProps<T> extends Omit<PressableProps, "children"> {
+  children?: ReactNode | ((info: ListRenderItemInfo<T>) => ReactNode);
+}
 
-export default function ListItem(props: ListItemProps) {
+export default function ListItem<T>(props: ListItemProps<T>) {
   const { children, ...other } = props;
+
+  const context = useListItemContext();
 
   return (
     <Pressable style={styles.item} {...other}>
-      {children}
+      {children && (typeof children === "function" ? children(context as ListRenderItemInfo<T>) : children)}
     </Pressable>
   );
 }

@@ -18,7 +18,7 @@ function SearchItem() {
   if (!searchValue || results.includes(searchValue)) return null;
 
   return (
-    <ListItem>
+    <ListItem key="search-item">
       <ListItemText title={`"${searchValue}" Not Found!`} subtitle="Add it to the list?" />
       <ListItemAction onPress={handleAddResult}>
         <MaterialIcons name="add" size={24} color="#ffffff" />
