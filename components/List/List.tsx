@@ -1,12 +1,12 @@
 import { PropsWithChildren } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
 export interface ListProps extends PropsWithChildren {}
 
 export default function List(props: ListProps) {
   const { children } = props;
 
-  return <View style={styles.list}>{children}</View>;
+  return <ScrollView style={styles.list}>{children}</ScrollView>;
 }
 
 const styles = StyleSheet.create({
