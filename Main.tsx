@@ -11,10 +11,10 @@ export default function Main() {
         style={[
           styles.container,
           {
-            paddingTop: insets.top + 4,
-            paddingBottom: insets.bottom,
-            paddingLeft: insets.left,
-            paddingRight: insets.right,
+            paddingTop: insets.top + 8,
+            paddingBottom: insets.bottom + 8,
+            paddingLeft: insets.left + 8,
+            paddingRight: insets.right + 8,
           },
         ]}
       >

@@ -6,3 +6,5 @@ export type { SearchInputProps } from "./SearchInput";
 
 export { default as SearchProvider, useSearchContext, SearchContext } from "./SearchProvider";
 export type { SearchProviderProps, SearchContextValue } from "./SearchProvider";
+
+export { default as SearchItem } from "./SearchItem";

@@ -1,4 +1,4 @@
-import { Pressable, PressableProps, StyleSheet } from "react-native";
+import { Platform, Pressable, PressableProps, StyleSheet } from "react-native";
 
 function isFunction(value: any): value is Function {
   return typeof value === "function";
@@ -14,7 +14,7 @@ export default function ListItemAction(props: ListItemActionProps) {
       style={({ pressed }) => [
         styles.action,
         !isFunction(style) && style,
-        pressed && styles.pressed,
+        (pressed || Platform.OS !== "android") && styles.pressed,
         isFunction(style) && style({ pressed }),
       ]}
       android_ripple={{ color: "#ffffff19", radius: 24, foreground: true, borderless: true }}
@@ -27,9 +27,10 @@ export default function ListItemAction(props: ListItemActionProps) {
 
 const styles = StyleSheet.create({
   action: {
-    marginInlineStart: 16,
     alignItems: "center",
     justifyContent: "center",
+    height: 32,
+    width: 32,
   },
   pressed: {
     backgroundColor: "#ffffff19",

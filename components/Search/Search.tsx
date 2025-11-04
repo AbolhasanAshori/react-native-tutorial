@@ -1,45 +1,59 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import SearchInput, { SearchInputProps } from "./SearchInput";
+import { useState } from "react";
+import SearchHistoryDialog from "./SearchHistoryDialog";
+import { useSearchContext } from "./SearchProvider";
+
+const RIPPLE_CONFIG = {
+  color: "#ffffff19",
+  radius: 32,
+  borderless: true,
+  foreground: true,
+};
 
 export interface SearchProps extends Pick<SearchInputProps, "placeholder" | "placeholderTextColor"> {}
 
 export default function Search(props: SearchProps) {
   const { placeholder, placeholderTextColor } = props;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { addResult, searchValue, setSearchValue } = useSearchContext();
 
   function handleSearchPress() {
-    console.log("Search");
+    addResult(searchValue);
+    setSearchValue("");
+  }
+
+  function handleMenuPress() {
+    setIsModalVisible(true);
+  }
+
+  function handleModalClose() {
+    setIsModalVisible(false);
   }
 
   return (
     <View style={styles.search}>
-      <MaterialIcons.Button
-        style={styles.iconButton}
-        iconStyle={styles.startIcon}
-        name="menu"
-        size={24}
-        color="white"
-        backgroundColor="transparent"
-      />
-      <SearchInput placeholder={placeholder} placeholderTextColor={placeholderTextColor} />
-      <Pressable
-        android_ripple={{ color: "#ffffff19", radius: 32, borderless: true, foreground: true }}
-        onPress={handleSearchPress}
-      >
-        <MaterialIcons
-          style={styles.iconButton}
-          iconStyle={styles.endIcon}
-          name="search"
-          size={30}
-          color="white"
-          backgroundColor="transparent"
-        />
+      <Pressable style={styles.iconButton} android_ripple={RIPPLE_CONFIG} onPress={handleMenuPress}>
+        <MaterialIcons name="menu" size={24} color="#e6e0e9" backgroundColor="transparent" />
       </Pressable>
+      <SearchInput placeholder={placeholder} placeholderTextColor={placeholderTextColor} />
+      <Pressable style={styles.iconButton} android_ripple={RIPPLE_CONFIG} onPress={handleSearchPress}>
+        <MaterialIcons name="search" size={30} color="#e6e0e9" backgroundColor="transparent" />
+      </Pressable>
+      <SearchHistoryDialog open={isModalVisible} onClose={handleModalClose} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  iconButton: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 30,
+    width: 30,
+  },
   search: {
     display: "flex",
     flexDirection: "row",
@@ -50,15 +64,5 @@ const styles = StyleSheet.create({
     minHeight: 56,
     backgroundColor: "#2b2930",
     paddingHorizontal: 16,
-  },
-  iconButton: {
-    padding: 0,
-  },
-  startIcon: {
-    marginRight: 12,
-  },
-  endIcon: {
-    marginLeft: 12,
-    marginRight: 0,
   },
 });

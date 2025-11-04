@@ -19,6 +19,7 @@ export default function SearchInput(props: SearchInputProps) {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
+    marginInline: 12,
   },
   input: {
     color: "#e6e0e9",
