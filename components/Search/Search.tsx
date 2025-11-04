@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import SearchInput, { SearchInputProps } from "./SearchInput";
 
@@ -6,6 +6,10 @@ export interface SearchProps extends Pick<SearchInputProps, "placeholder" | "pla
 
 export default function Search(props: SearchProps) {
   const { placeholder, placeholderTextColor } = props;
+
+  function handleSearchPress() {
+    console.log("Search");
+  }
 
   return (
     <View style={styles.search}>
@@ -18,14 +22,19 @@ export default function Search(props: SearchProps) {
         backgroundColor="transparent"
       />
       <SearchInput placeholder={placeholder} placeholderTextColor={placeholderTextColor} />
-      <MaterialIcons.Button
-        style={styles.iconButton}
-        iconStyle={styles.endIcon}
-        name="search"
-        size={30}
-        color="white"
-        backgroundColor="transparent"
-      />
+      <Pressable
+        android_ripple={{ color: "#ffffff19", radius: 32, borderless: true, foreground: true }}
+        onPress={handleSearchPress}
+      >
+        <MaterialIcons
+          style={styles.iconButton}
+          iconStyle={styles.endIcon}
+          name="search"
+          size={30}
+          color="white"
+          backgroundColor="transparent"
+        />
+      </Pressable>
     </View>
   );
 }

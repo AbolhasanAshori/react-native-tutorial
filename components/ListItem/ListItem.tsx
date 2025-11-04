@@ -12,7 +12,14 @@ export default function ListItem<T>(props: ListItemProps<T>) {
   const context = useListItemContext();
 
   return (
-    <Pressable style={styles.item} {...other}>
+    <Pressable
+      style={styles.item}
+      {...other}
+      android_ripple={{
+        color: "#ffffff19",
+        foreground: true,
+      }}
+    >
       {children && (typeof children === "function" ? children(context as ListRenderItemInfo<T>) : children)}
     </Pressable>
   );
