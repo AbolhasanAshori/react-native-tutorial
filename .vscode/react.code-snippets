@@ -1,0 +1,136 @@
+{
+  "react-context-ts": {
+    "prefix": "ctx",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "import { createContext } from 'react';\n",
+      "export interface ${1:ContextName}ContextValue {",
+      "\t${0:property: string};",
+      "}\n",
+      "export const ${1:ContextName}Context = createContext<${1:ContextName}ContextValue | null>(null);\n\n",
+    ],
+    "description": "React Context",
+    "isFileTemplate": true
+  },
+  "react-context-js": {
+    "prefix": "ctx",
+    "scope": "javascript,javascriptreact",
+    "body": [
+      "import { createContext } from 'react';\n",
+      "export const ${1:ContextName}Context = createContext(null);\n\n",
+    ],
+    "description": "React Context",
+  },
+  "react-use-context": {
+    "prefix": "usectx",
+    "scope": "javascript,javascriptreact,typescript,typescriptreact",
+    "body": [
+      "export function use${1:ContextName}Context() {",
+      "\tconst context = useContext(${1:ContextName}Context);\n",
+      "\tif (!context) {",
+      "\t\tthrow new Error('use${1:ContextName}Context must be used within a ${1:ContextName}Provider');",
+      "\t}\n",
+      "\treturn context;",
+      "}\n",
+    ],
+    "description": "React Use Context",
+  },
+  "react-context-with-provider-ts": {
+    "prefix": "ctxp",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "import { createContext, useContext, useMemo } from 'react';\n",
+      "import type { PropsWithChildren } from 'react';\n",
+      "export interface ${1:ContextName}ContextValue {",
+      "\t${2:property: string};",
+      "}\n",
+      "export const ${1:ContextName}Context = createContext<${1:ContextName}ContextValue | null>(null);\n",
+      "export function use${1:ContextName}Context() {",
+      "\tconst context = useContext(${1:ContextName}Context);\n",
+      "\tif (!context) {",
+      "\t\tthrow new Error('use${1:ContextName}Context must be used within a ${1:ContextName}Provider');",
+      "\t}\n",
+      "\treturn context;",
+      "}\n",
+      "export interface ${1:ContextName}ProviderProps extends PropsWithChildren {",
+      "\t${3:property: string};",
+      "}\n",
+      "export default function ${1:ContextName}Provider(props: ${1:ContextName}ProviderProps) {",
+      "\tconst { children } = props;\n",
+      "\tconst contextValue = useMemo<${1:ContextName}ContextValue>(() => ({ $0 }), []);\n",
+      "\treturn (",
+      "\t\t<${1:ContextName}Context.Provider value={contextValue}>",
+      "\t\t\t{children}",
+      "\t\t</${1:ContextName}Context.Provider>",
+      "\t);",
+      "}\n",
+    ],
+    "description": "React Context with Provider",
+    "isFileTemplate": true
+  },
+  "react-context-with-provider-js": {
+    "prefix": "ctxp",
+    "scope": "javascript,javascriptreact",
+    "body": [
+      "import { createContext, useContext, useMemo } from 'react';\n",
+      "export const ${1:ContextName}Context = createContext(null);\n",
+      "export function use${1:ContextName}Context() {",
+      "\tconst context = useContext(${1:ContextName}Context);\n",
+      "\tif (!context) {",
+      "\t\tthrow new Error('use${1:ContextName}Context must be used within a ${1:ContextName}Provider');",
+      "\t}\n",
+      "\treturn context;",
+      "}\n",
+      "export default function ${1:ContextName}Provider(props) {",
+      "\tconst { children } = props;\n",
+      "\tconst contextValue = useMemo(() => ({ $0 }), []);\n",
+      "\treturn (",
+      "\t\t<${1:ContextName}Context.Provider value={contextValue}>",
+      "\t\t\t{children}",
+      "\t\t</${1:ContextName}Context.Provider>",
+      "\t);",
+      "}\n",
+    ],
+    "description": "React Context with Provider",
+    "isFileTemplate": true,
+  },
+  "react-use-state": {
+    "prefix": "ustate",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact",
+    "body": [
+      "const [${1/(.*)/${1:/camelcase}/}, set${1/(.*)/${1:/pascalcase}/}] = useState($2);",
+      "$0",
+    ],
+    "description": "React useState"
+  },
+  "react-use-effect": {
+    "prefix": "ueffect",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact",
+    "body": [
+      "useEffect(() => {",
+      "\t$0",
+      "}, []);",
+    ],
+    "description": "React useEffect"
+  },
+  "react-use-memo": {
+    "prefix": "umemo",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact",
+    "body": [
+      "const ${1/(.*)/${1:/camelcase}/} = useMemo(() => {",
+      "\t$0",
+      "}, []);",
+    ],
+    "description": "React useMemo"
+  },
+  "react-use-callback": {
+    "prefix": "ucb",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact",
+    "body": [
+      "const ${1/(.*)/${1:/camelcase}/} = useCallback(() => {",
+      "\t$0",
+      "}, []);",
+    ],
+    "description": "React useCallback"
+  },
+}
