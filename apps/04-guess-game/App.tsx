@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { GameStartScreen } from "./screens";
 import { useEffect } from "react";
-import { deactivateKeepAwake, useKeepAwake } from "expo-keep-awake";
+import { deactivateKeepAwake } from "expo-keep-awake";
+import { GameProvider } from "./contexts";
+import Main from "./Main";
 
 export default function App() {
   useEffect(() => {
@@ -9,9 +10,9 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      <GameStartScreen />
+    <GameProvider>
       <StatusBar style="light" />
-    </>
+      <Main />
+    </GameProvider>
   );
 }

@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 export default function GameScreen() {
-  return <></>;
+  return <Text>Game Screen</Text>;
 }
 
 const styles = StyleSheet.create({});

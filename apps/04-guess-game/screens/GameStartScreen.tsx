@@ -1,30 +1,56 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import { PrimaryButton } from "../components";
-import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
+import { useGameContext } from "../contexts";
 
 export default function GameStartScreen() {
+  const { setGuessedNumber } = useGameContext();
+  const [numberInput, setNumberInput] = useState("");
+
+  function handleReset() {
+    setNumberInput("");
+  }
+
+  function handleConfirm() {
+    const number = parseInt(numberInput);
+
+    if (number <= 0 || number > 99 || isNaN(number)) {
+      Alert.alert("Invalid number!", "Number must be between 1 and 99", [
+        { text: "OK", onPress: handleReset, style: "destructive" },
+      ]);
+
+      return;
+    }
+
+    setGuessedNumber(number);
+  }
+
   return (
-    <LinearGradient style={styles.container} colors={["#72063c", "#ddb52f"]}>
-      <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.title}>Guess a Number</Text>
-            <TextInput
-              style={styles.input}
-              keyboardType="number-pad"
-              maxLength={2}
-              autoCorrect={false}
-              autoCapitalize="none"
-            />
-            <View style={styles.buttonsContainer}>
-              <PrimaryButton style={styles.button}>Confirm</PrimaryButton>
-              <PrimaryButton style={styles.button}>Reset</PrimaryButton>
-            </View>
+    <View style={styles.container}>
+      <View style={styles.topContainer}>
+        <View style={styles.inputContainer}>
+          <Text style={styles.title}>Guess a Number</Text>
+          <TextInput
+            value={numberInput}
+            onChangeText={setNumberInput}
+            style={styles.input}
+            keyboardType="number-pad"
+            maxLength={2}
+            autoCorrect={false}
+            autoCapitalize="none"
+          />
+          <View style={styles.buttonsContainer}>
+            <PrimaryButton style={styles.button} onPress={handleConfirm}>
+              Confirm
+            </PrimaryButton>
+            <PrimaryButton style={styles.button} onPress={handleReset}>
+              Reset
+            </PrimaryButton>
           </View>
         </View>
-        <View style={styles.bottomContainer}></View>
       </View>
-    </LinearGradient>
+      <View style={styles.bottomContainer}></View>
+    </View>
   );
 }
 

@@ -1,22 +1,19 @@
 import { PropsWithChildren } from "react";
-import { Text, View, StyleSheet, Pressable, ViewStyle } from "react-native";
+import { Text, View, StyleSheet, Pressable, ViewStyle, PressableProps } from "react-native";
 
 export interface PrimaryButtonProps extends PropsWithChildren {
   style?: ViewStyle;
+  onPress?: PressableProps["onPress"];
 }
 
 export default function PrimaryButton(props: PrimaryButtonProps) {
-  const { children, style } = props;
-
-  function handlePress() {
-    console.log("Button Pressed");
-  }
+  const { children, style, onPress } = props;
 
   return (
     <View style={[styles.container, style]}>
       <Pressable
         style={styles.button}
-        onPress={handlePress}
+        onPress={onPress}
         android_ripple={{
           color: "#640233",
           foreground: true,
