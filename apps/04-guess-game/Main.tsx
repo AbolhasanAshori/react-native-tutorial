@@ -1,10 +1,11 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { ImageBackground } from "react-native";
 import { StyleSheet } from "react-native";
-import { GameScreen, GameStartScreen } from "./screens";
+import { GameScreen, GameStartScreen } from "@/screens";
 import { useMemo } from "react";
-import { useGameContext } from "./contexts";
+import { useGameContext } from "@/contexts";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Colors } from "@/constants";
 
 export default function Main() {
   const { guessedNumber } = useGameContext();
@@ -20,7 +21,7 @@ export default function Main() {
   }, [guessedNumber]);
 
   return (
-    <LinearGradient style={styles.flex} colors={["#72063c", "#ddb52f"]}>
+    <LinearGradient style={styles.flex} colors={[Colors.primary[700], Colors.secondary[500]]}>
       <ImageBackground
         source={require("./assets/images/background.png")}
         style={styles.flex}

@@ -1,7 +1,8 @@
-import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
-import { PrimaryButton } from "../components";
 import { useState } from "react";
-import { useGameContext } from "../contexts";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import { PrimaryButton } from "@/components";
+import { useGameContext } from "@/contexts";
+import { Colors } from "@/constants";
 
 export default function GameStartScreen() {
   const { setGuessedNumber } = useGameContext();
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
     elevation: 4,
-    backgroundColor: "#640233",
+    backgroundColor: Colors.primary[800],
     borderRadius: 8,
   },
   title: {
@@ -90,8 +91,8 @@ const styles = StyleSheet.create({
   input: {
     width: 50,
     fontSize: 32,
-    borderColor: "#ddb52f",
-    color: "#ddb52f",
+    borderColor: Colors.secondary[500],
+    color: Colors.secondary[500],
     borderBottomWidth: 1,
     fontWeight: "bold",
     textAlign: "center",
