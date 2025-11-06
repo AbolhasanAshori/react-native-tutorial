@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import { GameScreen, GameStartScreen } from "./screens";
 import { useMemo } from "react";
 import { useGameContext } from "./contexts";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Main() {
   const { guessedNumber } = useGameContext();
@@ -26,7 +27,7 @@ export default function Main() {
         resizeMode="cover"
         imageStyle={styles.backgroundImage}
       >
-        {screen}
+        <SafeAreaView style={styles.flex}>{screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );

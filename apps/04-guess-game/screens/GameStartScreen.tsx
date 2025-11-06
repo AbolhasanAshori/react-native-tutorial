@@ -49,7 +49,7 @@ export default function GameStartScreen() {
           </View>
         </View>
       </View>
-      <View style={styles.bottomContainer}></View>
+      <View style={styles.bottomContainer} />
     </View>
   );
 }
